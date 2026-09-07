@@ -1,82 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	
-	<title>Martin Noronha</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<meta name="HandheldFriendly" content="true">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	
-	
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/grid.css">
-	<link rel="stylesheet" href="css/layout.css">
-	<link rel="stylesheet" href="css/countdown.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/mediaqueries.css">
-	
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<title>Martin Noronha — Video educator and creator</title>
+<meta name="description" content="Video educator and creator based in Bengaluru. Co-founder of Aevy Video School, and a mentor at GenC.">
+<link rel="canonical" href="https://martinnoronha.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Martin Noronha — Video educator and creator">
+<meta property="og:description" content="Video educator and creator based in Bengaluru. Co-founder of Aevy Video School, and a mentor at GenC.">
+<meta property="og:url" content="https://martinnoronha.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@techinmartin">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style"
+  href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400&display=swap"
+  onload="this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --ink:#000;
+    --paper:#fff;
+    --dim:rgba(255,255,255,.58);
+    --hair:rgba(255,255,255,.28);
+    --gutter:clamp(20px, 4.2vw, 88px);
+    --gutter-l:max(var(--gutter), env(safe-area-inset-left));
+    --gutter-r:max(var(--gutter), env(safe-area-inset-right));
+    --indent:16%;
+    --display:"Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --text:"Newsreader", Georgia, "Times New Roman", serif;
+  }
 
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--text);
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:clip;
+  }
+
+  a{color:inherit;text-decoration:none}
+  a:focus-visible{outline:1px solid var(--paper);outline-offset:4px}
+  a{-webkit-tap-highlight-color:rgba(255,255,255,.12)}
+
+  .u{position:relative;display:inline-block;padding-bottom:.12em}
+  /* Touch devices get a 44px tap area without changing the visual layout. */
+  @media (hover:none){
+    nav .u::before, footer .u::before{
+      content:"";position:absolute;
+      left:-6px;right:-6px;top:50%;
+      height:44px;transform:translateY(-50%);
+    }
+  }
+  .u::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:right;
+    transition:transform .45s cubic-bezier(.19,1,.22,1);
+  }
+  .u:hover::after,.u:focus-visible::after{transform:scaleX(1);transform-origin:left}
+
+  .wrap{max-width:1680px;margin:0 auto;padding:0 var(--gutter-r) 0 var(--gutter-l)}
+
+  /* masthead */
+  header{position:absolute;top:0;left:0;right:0;z-index:10;padding-top:clamp(22px,2.6vw,40px)}
+  .masthead{display:flex;align-items:baseline;justify-content:space-between;gap:24px}
+  .mark{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em}
+  nav{display:flex;gap:clamp(14px,1.6vw,26px);font-size:clamp(13px,.95vw,15px)}
+  /* Below 720px the nav and the name collide, so the nav moves to the footer. */
+  @media (max-width:719px){
+    header nav{display:none}
+  }
+  .social{display:none}
+  @media (max-width:719px){
+    .social{display:flex;flex-wrap:wrap;gap:1.1em}
+  }
+
+  /* hero */
+  .hero{
+    position:relative;
+    min-height:100vh;      /* fallback for older mobile browsers */
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    padding:clamp(96px,20vh,240px) 0 clamp(110px,16vh,200px);
+    isolation:isolate;
+  }
+  .hero-inner{width:100%}
+  .hero h1{
+    margin:0;
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(1.95rem,7.6vw,7rem);
+    line-height:1.0;
+    letter-spacing:-.032em;
+  }
+
+  @media (min-width:900px){
+    .hero h1{
+      margin-left:var(--indent);
+      font-size:clamp(3rem,6.4vw,7rem);
+      line-height:.98;
+      letter-spacing:-.036em;
+    }
+    .hero-inner{width:100%}
+    .hero h1 .line > span{white-space:nowrap}
+  }
+
+  /* Mask is padded so descenders (g, y, j) sit inside it, then the negative
+     margin closes the gap so line spacing is unchanged. */
+  .line{display:block;overflow:hidden;margin-bottom:-.18em}
+  .line > span{
+    display:block;
+    padding-bottom:.18em;
+    transform:translateY(104%);
+    animation:rise 1.05s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .line:nth-child(1) > span{animation-delay:.55s}
+  .line:nth-child(2) > span{animation-delay:.68s}
+  .line:nth-child(3) > span{animation-delay:.81s}
+  .line:nth-child(4) > span{animation-delay:.94s}
+  .line:nth-child(5) > span{animation-delay:1.07s}
+  @keyframes rise{to{transform:translateY(0)}}
+
+  /* Playhead: one pass down the hero, ahead of the type. */
+  .playhead{
+    position:absolute;
+    left:0;right:0;
+    top:0;
+    height:1px;
+    background:var(--paper);
+    transform-origin:left;
+    opacity:0;
+    z-index:2;
+    pointer-events:none;
+    animation:sweep 1.5s cubic-bezier(.65,0,.35,1) .18s forwards;
+  }
+  @keyframes sweep{
+    0%   {opacity:0;  transform:translateY(18vh) scaleX(0)}
+    14%  {opacity:.85; transform:translateY(22vh) scaleX(1)}
+    82%  {opacity:.5;  transform:translateY(74vh) scaleX(1)}
+    100% {opacity:0;  transform:translateY(82vh) scaleX(1)}
+  }
+
+  /* Timecode: the one thing that keeps moving after the page settles. */
+  .timecode{
+    position:absolute;
+    bottom:clamp(20px,4vh,44px);
+    left:0;right:0;
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(11px,.82vw,13px);
+    letter-spacing:.06em;
+    font-variant-numeric:tabular-nums;
+    color:var(--dim);
+    opacity:0;
+    animation:fade .8s ease 1.9s forwards;
+  }
+  .timecode .wrap{display:flex;gap:1.4em;align-items:baseline;flex-wrap:wrap}
+  /* Hidden on short viewports where it would sit under the headline. */
+  @media (max-height:620px) and (max-width:719px){
+    .timecode{display:none}
+  }
+  @media (min-width:900px){.timecode .tc{margin-left:var(--indent)}}
+  .timecode .rec{
+    display:inline-block;
+    width:.5em;height:.5em;
+    border-radius:50%;
+    background:var(--paper);
+    margin-right:.6em;
+    vertical-align:baseline;
+    animation:blink 2s steps(1,end) infinite;
+  }
+  @keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.18}}
+
+  header .masthead{opacity:0;animation:fade .9s ease 1.75s forwards}
+  @keyframes fade{to{opacity:1}}
+
+  /* text blocks */
+  .block{
+    display:grid;
+    gap:clamp(14px,1.6vw,28px);
+    padding:clamp(46px,6.5vw,110px) 0;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:900px){
+    .block{
+      grid-template-columns:22% 12% minmax(0,1fr);
+      column-gap:clamp(24px,3vw,60px);
+    }
+    .block .body{max-width:60ch}
+  }
+
+  .meta{align-self:start;padding-top:.55em}
+  .rule{
+    display:block;width:min(150px,60%);height:1px;background:var(--hair);
+    transform:scaleX(0);transform-origin:left;
+    transition:transform 1s cubic-bezier(.19,1,.22,1);
+  }
+  .reveal.in .rule{transform:scaleX(1)}
+
+  .label{
+    font-family:var(--display);font-weight:500;
+    font-size:clamp(14px,1.05vw,16px);letter-spacing:-.01em;
+    align-self:start;padding-top:.4em;
+  }
+  .body{font-size:clamp(15.5px,1.18vw,18.5px);line-height:1.6;max-width:44ch}
+  @media (min-width:600px){.body{line-height:1.62}}
+  .body p{margin:0 0 1.25em}
+  .body p:last-child{margin-bottom:0}
+
+  .reveal{
+    opacity:0;transform:translateY(12px);
+    transition:opacity .9s ease, transform .9s cubic-bezier(.19,1,.22,1);
+  }
+  .reveal.in{opacity:1;transform:none}
+
+  /* contact */
+  .contact{padding:clamp(90px,17vw,240px) 0 clamp(40px,5vw,70px)}
+  .contact a{
+    display:block;
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(1.95rem,7.6vw,7rem);
+    line-height:1.02;letter-spacing:-.032em;
+    border-bottom:1px solid var(--paper);
+    padding-bottom:.16em;width:max-content;max-width:100%;
+    transition:opacity .4s ease;
+  }
+  @media (min-width:900px){
+    .contact a{margin-left:var(--indent);font-size:clamp(3rem,6.4vw,7rem);letter-spacing:-.036em}
+  }
+  .contact a:hover{opacity:.62}
+
+  footer{
+    display:grid;grid-template-columns:1fr;gap:10px;
+    padding-bottom:clamp(28px,4vw,64px);
+    font-size:clamp(12.5px,.92vw,14.5px);
+    color:var(--dim);line-height:1.55;
+  }
+  @media (min-width:900px){
+    footer{grid-template-columns:22% 22% minmax(0,1fr);column-gap:clamp(24px,3vw,60px)}
+    footer .addr{justify-self:end;text-align:right}
+    footer{align-items:start}
+  }
+  footer a:hover{color:var(--paper)}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .line > span{transform:none}
+    .reveal{opacity:1;transform:none}
+    .rule{transform:scaleX(1)}
+    header .masthead{opacity:1}
+    .playhead{display:none}
+    .timecode{opacity:1}
+    .timecode .rec{opacity:1}
+  }
+</style>
+</head>
 <body>
 
-	<!-- Start Header -->
-	<header>
-		<div class="container">
-			<div class="row">
-				<div class="span5">
-					<div id="logo">
-						<a href="index.html">@techinmartin</a>
-						<p>martinnoronha.com</p>
-					</div>
-				</div>
-				<div class="span7">
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- End Header -->
-	
-	<div class="noise">
-		<!-- Start Title -->
-		<section class="container contdown-intro">
-			<div class="row">
-				<div class="span10 offset1">
-					<h1 class="contdown-title">Martin's team is currently working on a <span class="color-text">new awesome website</span>. Stay tuned.</h1>
-				</div>
-			</div>
-		</section>
-		<!-- End Title -->
-		
-							
-		<!-- Start Footer -->
-		<footer class="container">
-		<div class="row">
-			<div class="span12"></div>
-		</div>
-		<div class="row">
-			<div class="span5">
-				<p>© 2023 <a href="index.html">Martin Noronha</a>.<br>
-				</p>
-			</div>
-      <!--<div class="span7">
-				<ul class="social-icons">
-					<li><a href="https://www.facebook.com/techinmartin"><span><i class="icon-facebook"></i></span></a></li>
-					<li><a href="https://www.twitter.com/techinmartin"><span><i class="icon-twitter"></i></span></a></li>
-					<li><a href="https://www.instagram.com/techinmartin"><span><i class="icon-pinterest"></i></span></a></li>
-					<li><a href="https://www.linkedin.com/in/techinmartin"><span><i class="icon-linkedin"></i></span></a></li>
-				</ul>
-			</div>-->
-		</div>
-	</footer>
-		<!-- End Footer -->
-	</div>
-	
-</body>
+<header>
+  <div class="wrap masthead">
+    <span class="mark">Martin Noronha</span>
+    <nav>
+      <a class="u" href="https://www.youtube.com/c/martinnoronha" target="_blank" rel="noopener">YouTube</a>
+      <a class="u" href="https://www.instagram.com/techinmartin/" target="_blank" rel="noopener">Instagram</a>
+      <a class="u" href="https://x.com/techinmartin" target="_blank" rel="noopener">X</a>
+      <a class="u" href="https://www.linkedin.com/in/techinmartin/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</header>
 
+<main>
+  <section class="hero">
+    <span class="playhead" aria-hidden="true"></span>
+    <div class="wrap hero-inner">
+    <h1>
+      <span class="line"><span>Video educator and</span></span>
+      <span class="line"><span>creator based in</span></span>
+      <span class="line"><span>Bengaluru. Currently</span></span>
+      <span class="line"><span>running Aevy</span></span>
+      <span class="line"><span>Video School.</span></span>
+    </h1>
+    </div>
+    <div class="timecode" aria-hidden="true">
+      <div class="wrap">
+        <span class="tc"><span class="rec"></span><span id="tc">00:00:00:00</span></span>
+        <span>Bengaluru</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <section class="block reveal">
+      <div class="meta"><span class="rule"></span></div>
+      <div class="label">Intro</div>
+      <div class="body">
+        <p>I teach people how to make videos. Most of what I teach has very little to do with cameras. It's the harder part: sitting with an idea long enough to turn it into something worth watching.</p>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <div class="meta"><span class="rule"></span></div>
+      <div class="label">Now</div>
+      <div class="body">
+        <p>Most of my week goes to <a class="u" href="https://aevyvideoschool.com" target="_blank" rel="noopener">Aevy Video School</a>. I build the curriculum, I teach, and I spend a lot of time answering questions from people who are further along than they think they are.</p>
+        <p>It sits alongside <a class="u" href="https://aevytv.com" target="_blank" rel="noopener">AevyTV</a>, the channel the whole thing grew out of, and <a class="u" href="https://www.genc.club/" target="_blank" rel="noopener">GenC</a>, a five-month creator school in Bangalore where I teach in a room instead of on a call. The room changes how people learn more than I expected it to.</p>
+        <p>Aevy has grown into the biggest thing I've built, and I still find that hard to say out loud without flinching.</p>
+      </div>
+    </section>
+
+    <section class="block reveal">
+      <div class="meta"><span class="rule"></span></div>
+      <div class="label">Otherwise</div>
+      <div class="body">
+        <p>The rest of the time I'm at my computer, chasing whatever I got curious about that morning. Most of it goes nowhere. Some of it becomes the next thing I teach.</p>
+      </div>
+    </section>
+
+    <section class="contact reveal">
+      <a href="mailto:martin@martinnoronha.com">Say hello.</a>
+    </section>
+
+    <footer>
+      <div>Martin Noronha</div>
+      <div><a class="u" href="mailto:martin@martinnoronha.com">martin@martinnoronha.com</a></div>
+      <div class="addr">Bengaluru, India</div>
+      <div class="social">
+        <a class="u" href="https://www.youtube.com/c/martinnoronha" target="_blank" rel="noopener">YouTube</a>
+        <a class="u" href="https://www.instagram.com/techinmartin/" target="_blank" rel="noopener">Instagram</a>
+        <a class="u" href="https://x.com/techinmartin" target="_blank" rel="noopener">X</a>
+        <a class="u" href="https://www.linkedin.com/in/techinmartin/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+</main>
+
+<script>
+  /* Running timecode at 24fps. Starts at zero on page load. */
+  (function () {
+    const el = document.getElementById('tc');
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const FPS = 24;
+    const t0 = performance.now();
+    const pad = (n, w) => String(n).padStart(w, '0');
+    let last = '';
+    function tick(now) {
+      const total = (now - t0) / 1000;
+      const f = Math.floor((total % 1) * FPS);
+      const sec = Math.floor(total);
+      const out = pad(Math.floor(sec / 3600), 2) + ':' +
+                  pad(Math.floor(sec / 60) % 60, 2) + ':' +
+                  pad(sec % 60, 2) + ':' + pad(f, 2);
+      if (out !== last) { el.textContent = out; last = out; }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add('in'));
+  }
+</script>
+
+</body>
 </html>
